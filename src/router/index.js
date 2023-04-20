@@ -29,6 +29,14 @@ const router = createRouter({
         {
             path: '/adminPage',
             component: ()=> import('../views/AdminPage.vue')
+        },
+        {
+            path: '/createMusic',
+            component: ()=> import('../views/createMusic.vue')
+        },
+        {
+            path: '/musicInfo',
+            component: ()=> import('../views/MusicInfo.vue')
         }
     ]
 })

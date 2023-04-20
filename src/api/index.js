@@ -1,0 +1,22 @@
+import request from "../utils/request";
+
+/**
+ * admin login api
+ */
+export const adminGetLogin = (data) =>{
+    return request({method: 'post', url: '/api/v1/admin/adminLogin', data})
+};
+
+/**
+ * 获取user列表数据的api
+ */
+export const getUser = (data) =>{
+    return request({method: 'get', url: '/api/v1/admin/find', data})
+}
+
+/**
+ * 获取music列表数据的api
+ */
+export const getMusic = (data) =>{
+    return request({method: 'get', url: '/api/v1/admin/search', data})
+}

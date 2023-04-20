@@ -5,30 +5,21 @@
             
         </div>
         <div class="homeIcon">
-            <span>Welcome to Music Control System</span>
+            <span>Music Details</span>
         </div>
         <!--头部右标签 -->
         <div class="admin">
             <!--log out button-->
-            <el-button type="primary" @click="logOut">Log Out</el-button>
+            <el-button type="primary" @click="goAdmin">Admin</el-button>
         </div>
     </div>
 </template>
 
 <script setup>
 import router from '../../router/index';
-//click to log out
-const logOut = () =>{
-    //warning info log out
-    ElNotification({
-    title: 'Log Out',
-    message: 'Log Out Success!',
-    type: 'warning',
-    offset: 100
-  })
-    router.push('/home'),
-    //click log out button remove token
-    localStorage.removeItem('token');
+
+const goAdmin = () =>{
+    router.push('/adminPage');
 }
 </script>
 

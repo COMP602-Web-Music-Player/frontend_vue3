@@ -38,8 +38,7 @@
 <script setup>
 import router from '../router/index';
 import { reactive, ref } from 'vue';
-// import { getLogin } from '../api/index';
-import { ElMessage } from 'element-plus';
+import { adminGetLogin } from '../api/index';
 /**
  * 初始的ref
  */
@@ -77,26 +76,25 @@ const adminLogin = () =>{
  * admin login接口的调用
  */
 //登录的接口调用
-const getLoginData = () =>{
-  // //login api 封装调用
-  // const res = await getLogin({admin: adminInfo.admin, password: adminInfo.password})
-  // //如果登录成功
-  // if (res.token) {
-  //   localStorage.setItem('token', res.token)
-  //   //当接口中的token传入成功 login时打印message
-  //   ElMessage({
-  //       message: 'Login Success!',
-  //       type: 'success',
-  //     });
-  //     //需要传入router index.js中的path: '/home'
-  //     router.push('/home');
-  // }
-  ElMessage({
+const getLoginData = async() =>{
+  //login api 封装调用
+  const res = await adminGetLogin({admin: adminInfo.admin, password: adminInfo.password})
+  //如果登录成功
+  if (res?.message) {
+    // localStorage.setItem('token', res.token)
+    //当接口中的token传入成功 login时打印message
+    ElMessage({
         message: 'Login Success!',
         type: 'success',
       });
       //需要传入router index.js中的path: '/home'
       router.push('/adminPage');
+  }else{
+    ElMessage({
+        message: 'Login Failed!',
+        type: 'warning',
+      });
+  }     
 }
 </script>
 

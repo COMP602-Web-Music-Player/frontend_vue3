@@ -5,23 +5,14 @@
             <img src="../../assets/ICON.png">
             <span>Music Control System</span>
         </div>
+
         <!--tab menu 1-->
         <el-sub-menu index="1">
-            <template #title>
-                <el-icon><Avatar /></el-icon>
-                <span>User</span>
-            </template>
-            <el-menu-item index="1-1">User Information</el-menu-item>
-        </el-sub-menu>
-
-        <!--tab menu 2-->
-        <el-sub-menu index="2">
             <template #title>
                 <el-icon><Headset /></el-icon>
                 <span>Music</span>
             </template>
-            <el-menu-item index="2-1" @click="goMusicDetails">Music Details</el-menu-item>
-            <el-menu-item index="2-2" @click="goCreateMusic">Upload Music</el-menu-item>
+            <el-menu-item index="1-1" @click="goCreateMusic">Upload Music</el-menu-item>
         </el-sub-menu>
     </el-menu>
 </template>
@@ -31,10 +22,6 @@ import router from '../../router/index';
 
 const goCreateMusic = () =>{
     router.push('/createMusic');
-}
-
-const goMusicDetails = () =>{
-    router.push('musicInfo');
 }
 </script>
 
