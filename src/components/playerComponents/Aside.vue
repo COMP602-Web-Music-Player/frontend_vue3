@@ -1,19 +1,20 @@
 <template>
     <el-menu class="el-menu-vertical-demo" active-text-color="#FFFFFF" background-color="#FF5C9A" text-color="#000000" unique-opened="true">
         <!--set up icon and title-->
-        <div class="icon">
+        <!-- <div class="icon">
             <img src="../../assets/ICON.png">
             <span>Music Control System</span>
-        </div>
+        </div> -->
 
         <!--tab menu 1-->
         <el-sub-menu index="1">
             <template #title>
                 <el-icon><Headset /></el-icon>
-                <span>Music</span>
+                <span>Play List</span>
             </template>
-            <el-menu-item index="1-1" @click="goMusicDetails">Music Details</el-menu-item>
-            <el-menu-item index="1-2" @click="goCreateMusic">Upload Music</el-menu-item>
+            <el-menu-item index="1-1">Play List 1</el-menu-item>
+            <el-menu-item index="1-2">Play List 2</el-menu-item>
+            <el-menu-item index="1-3">Play List 3</el-menu-item>
         </el-sub-menu>
     </el-menu>
 </template>
@@ -21,13 +22,6 @@
 <script setup>
 import router from '../../router/index';
 
-const goCreateMusic = () =>{
-    router.push('/createMusic');
-}
-
-const goMusicDetails = () =>{
-    router.push('musicInfo');
-}
 </script>
 
 <style lang="less" scoped>
@@ -49,7 +43,7 @@ const goMusicDetails = () =>{
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 113%;
     height: 60px;
-    background-color: whitesmoke;
+    background-color: #FF5C9A;
     white-space: nowrap;
     padding-left: 10px;
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
