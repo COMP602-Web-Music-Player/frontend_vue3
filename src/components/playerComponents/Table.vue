@@ -2,6 +2,10 @@
     <div class="table">
         <!--创建表格-->
         <el-table :data="list" style="width:1390px">
+            <el-table-column prop="id" >
+
+            </el-table-column>
+
             <el-table-column prop="coverImage">
                 <template #default="scope">
                     <img :src="scope.row.coverImage" style="width: 100px; height: 100px;">

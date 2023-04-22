@@ -15,7 +15,34 @@ import { getMusic } from '../../api/index';
 
 //创建一个数组。接收传递过来的数据
 const data = reactive({
-    list:[]
+    list:[
+        {
+            id: '1',
+            coverImage: 'http://akarana.oss-ap-southeast-1.aliyuncs.com/car1.jpg',
+            musicName: 'abc1',
+            categories: 'abc1',
+            singer: 'abc1',
+            url: 'http://akarana.oss-ap-southeast-1.aliyuncs.com/Red.mp3'
+        },
+
+        {
+            id: '2',
+            coverImage: 'http://akarana.oss-ap-southeast-1.aliyuncs.com/car2.jpg',
+            musicName: 'abc2',
+            categories: 'abc2',
+            singer: 'abc2',
+            url: 'http://akarana.oss-ap-southeast-1.aliyuncs.com/Pop%20Stars.mp3'
+        },
+
+        {
+            id: '3',
+            coverImage: 'http://akarana.oss-ap-southeast-1.aliyuncs.com/car3.jpg',
+            musicName: 'abc3',
+            categories: 'abc3',
+            singer: 'abc3',
+            url: 'http://akarana.oss-ap-southeast-1.aliyuncs.com/%E6%B8%85%E6%98%8E%E9%9B%A8%E4%B8%8A.mp3'
+        }
+    ]
 })
 
 /**
@@ -28,9 +55,9 @@ const data = reactive({
     data.list = res?.data.list;
 }
 //显示数据
-onMounted(() => {
-    getMusicData()
-})
+// onMounted(() => {
+//     getMusicData()
+// })
 
 /**
  * 控制播放器的逻辑
