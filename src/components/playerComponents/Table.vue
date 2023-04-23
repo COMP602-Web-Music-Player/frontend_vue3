@@ -1,7 +1,7 @@
 <template>
     <div class="table">
         <!--创建表格-->
-        <el-table :data="list" style="width:1390px">
+        <el-table :data="musicList.list" style="width:1390px">
             <el-table-column prop="id" >
 
             </el-table-column>
@@ -31,7 +31,7 @@
             <el-icon><VideoPlay /></el-icon>
             <el-table-column>
                 <template #default="scope">
-                    <el-button :icon="VideoPlay" circle @click="playerClick(scope.row)"/>
+                    <el-button :icon="VideoPlay" circle @click="playerClick(scope.row, scope.$index)"/>
                     <!--delete button scope.row.id传递局部对应的id值-->
                     <!-- <el-popconfirm title="Are you sure to delete this information?" @confirm="deleteHandle(scope.row.id)">
                         <template #reference>
@@ -47,9 +47,20 @@
 <script setup>
 import { Delete, VideoPlay } from '@element-plus/icons-vue'
 //子组件，传入父组件Main.vue传入的数据，使用defineProps接收
-import { defineProps } from 'vue';
+import { defineProps,reactive, watch } from 'vue';
 //父组件传入的变量名 list
-const { list, playerClick } = defineProps(['list', 'playerClick'])
+const props = defineProps(['list', 'playerClick'])
+
+const musicList = reactive({
+    list: [],
+})
+watch(
+  () => props.list,
+  (newList) => {
+    console.log('????');
+    musicList.list = newList;
+  },
+);
 </script>
 
 <style lang="less" scoped>

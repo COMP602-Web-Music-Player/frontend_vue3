@@ -1,8 +1,5 @@
 <template>
-  <!-- modelValue: 设置dialog框展示状态-->
-  <el-dialog title="Player" :model-value="popShow" width="35%" center :show-close="false"  :close-on-click-modal="false" :close-on-press-escape="false" @opened="opened">
-      <el-form >
-        <div class="net-easy-player">
+  <div class="net-easy-player">
     <div
       class="background-flitter"
       :style="`background-image: url(${state.backgroundUrl});`"
@@ -44,83 +41,49 @@
         </div>
       </div>
   </div>
-          <el-form-item>
-              <el-button @click="cancelClick('cancel')">Close</el-button>
-          </el-form-item>
-      </el-form>
-      
-  </el-dialog>
 </template>
-
+  
 <script setup>
-import { reactive, ref, watch, computed, defineProps } from "vue";
+import { onMounted, reactive, ref,  computed, defineProps } from "vue";
 import { ArrowLeftBold, ArrowRightBold, VideoPlay,VideoPause} from '@element-plus/icons-vue'
-//获取父组件main.vue传过来的表格中的数据，通过message获取
-// eslint-disable-next-line vue/no-setup-props-destructure
-const props = defineProps(['popShow','cancelClick', "playIndex", "list"]);
+const props = defineProps(['musicList']);
 
-//进度条初始化
 const track = ref(null);
-//音频初始化
 const audioRef = ref(null);
-/**
- * 定义音乐播放器中需要的响应数据
- */
-const state = reactive({
-  backgroundUrl: "https://peiyinimg.qupeiyin.cn/1629950282884-288.jpg",
-  menuList: ["Playing", "Suggestion", "Suggestion", "Playing History"],
-  //当前选中的菜单项的索引
-  activeIndex: 2,
-  //音乐是否正在播放
-  playing: false,
-  //存储music list
-  songList: [],
-  //音频播放进度
-  audioProgress: 0,
-  //当前播放的歌曲在列表中的index
-  playIndex: 0, // 当前播放哪一首
-  //歌词行数
-  lyricIndex: 0,
-  // 当前播放进度
-  currentTime: 0,
-  progressL: 0, // 进度条总长度
-  songInfo: {},
-  lyricInfo: [],
-  audioTime: "00:00",
-  volume: 100,
-  playStatus: false, // 搜索或者历史播放完成后关闭播放状态按钮
+  const state = reactive({
+    backgroundUrl: "https://peiyinimg.qupeiyin.cn/1629950282884-288.jpg",
+    menuList: ["Playing", "Suggestion", "Searching", "Playing History"],
+    activeIndex: 2, // 选中
+    playing: false,
+    songList: props.musicList,
+    audioProgress: 0, // 进度
+    playIndex: 0, // 当前播放哪一首
+    lyricIndex: 0, // 歌词到哪一行了
+    currentTime: 0, // 当前播放进度
+    progressL: 0, // 进度条总长度
+    songInfo: {},
+    lyricInfo: [],
+    audioTime: "00:00",
+    volume: 100,
+    playStatus: false, // 搜索或者历史播放完成后关闭播放状态按钮
 });
-//通过message变量，获取父组件main.vue传来的数据，并传入dialog框中
 
-watch(
-  () => props.list,
-  (newList) => {
-    state.songList = newList;
-  },
-);
-watch(
-  () => props.playIndex,
-  (newIndex) => {
-    state.playIndex = newIndex;
-  },
-);
-
-const opened = () => {
-    state.progressL = track.value.offsetWidth;
-      // window.addEventListener("resize", function () {
-      //   // 变化后需要做的事
-      //   state.progressL = track.value.offsetHeight;
-      // });
-      console.log('state.playIndex1 = ', state.playIndex);
-      Init(); // 初始
-}
-
+onMounted(() => {
+  // state.progressL = track.value.offsetHeight;
+  console.log(state.progressL); //取元素宽高等属性操作
+  state.progressL = track.value.offsetWidth;
+  // window.addEventListener("resize", function () {
+  //   // 变化后需要做的事
+  //   state.progressL = track.value.offsetHeight;
+  // });
+  Init(); // 初始化
+});
 const Init = () => {
   GetSongInfo();
 };
 const GetSongInfo = () => {
   let myList = state.songList;
-  state.songInfo = myList[state.playIndex];
+  state.songInfo = myList[0];
   state.backgroundUrl = state.songInfo.coverImage;
   audioInit();
   // GetLyric(state.songInfo.id);
@@ -212,47 +175,6 @@ const audioProgressPercent = computed(() => {
   return `${state.audioProgress * 100}%`;
 });
 </script>
-
-<style>
-.el-main .el-overlay .el-overlay-dialog .el-dialog{
-  background: none !important
-}
-
-
-</style>
-<style lang="less" scoped>
-.font-size {
-font-size: 17px;
-}
-.font-style {
-font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-}
-
-:deep(.el-form-item__content) {
-justify-content: center;
-margin-left: 0 !important;
-}
-
-// ::v-deep 
-.dialog-footer button:first-child{
-margin-right: 10px;
-}
-
-:deep(.el-form-item__label) {
-width: 110px !important;
-font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-}
-
-:deep(.el-form-item__content) {
-justify-content: center;
-margin-left: 0 !important;
-}
-
-.slider-demo-block {
-display: flex;
-align-items: center;
-}
-</style>
 
 <style lang="less" scoped>
 .net-easy-player {

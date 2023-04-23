@@ -8,12 +8,14 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "@moefe/vue-aplayer": "^2.0.0-beta.5",
     "axios": "^0.27.2",
     "core-js": "^3.8.3",
     "element-plus": "^2.1.11",
     "less": "^4.1.2",
     "less-loader": "^7.3.0",
     "vue": "^3.2.13",
+    "vue-music-component": "^1.1.7",
     "vue-router": "^4.0.14"
   },
   "devDependencies": {
