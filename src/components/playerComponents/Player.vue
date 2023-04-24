@@ -2,53 +2,72 @@
   <!-- modelValue: 设置dialog框展示状态-->
   <el-dialog title="Player" :model-value="popShow" width="35%" center :show-close="false"  :close-on-click-modal="false" :close-on-press-escape="false" @opened="opened">
       <el-form >
+        <!-- 包含整个音乐播放器的容器 -->
         <div class="net-easy-player">
-    <div
-      class="background-flitter"
-      :style="`background-image: url(${state.backgroundUrl});`"
-    ></div>
-    <div class="music-mask"></div>
-    <audio :src="state.songInfo.url"  id="audio" ref="audioRef" :volume="state.volume / 100"></audio>
-    <div class="song-cover">
-        <img class="audioCover" :src="state.songInfo.coverImage" alt="" />
-      </div>
-      
-    <div class="music-footer">
-      
+          <!-- 显示背景图片，使用 state.backgroundUrl 作为图片 URL -->
+          <div class="background-flitter" :style="`background-image: url(${state.backgroundUrl});`"></div>
 
-      <div class="music-speed">
-        <div class="name-time">
-          <div>{{ state.songInfo.musicName }} - {{state.songInfo.singer}}</div>
-          <div>{{ state.currentTime }}/{{ state.audioTime }}</div>
-        </div>
-        <div class="process-container">
-          <div class="process-bar" ref="track" id="audio-bar">
-            <div class="progress-box" :style="{ width: audioProgressPercent }">
+          <!-- 一个半透明遮罩，用于覆盖在背景图片上，使其变暗 -->
+          <div class="music-mask"></div>
+
+          <!-- 音频标签，用于播放音乐。它具有以下属性,src: 音乐文件的url, id and ref用于在引用元素，控制音量 -->
+          <audio :src="state.songInfo.url"  id="audio" ref="audioRef" :volume="state.volume / 100"></audio>
+
+          <!-- 显示音乐封面图片 -->
+          <div class="song-cover">
+            <!-- state.songInfo.coverImage 作为图片 URL -->
+            <img class="audioCover" :src="state.songInfo.coverImage" alt="" />
+          </div>
+
+          <!-- 包含进度条和控制按钮的容器 -->
+          <div class="music-footer">
+            <!-- 包含歌曲信息、播放时间和进度条的容器 -->
+            <div class="music-speed">
+              <!-- music name,singer currentTime and audioTime -->
+              <div class="name-time">
+                <div>{{ state.songInfo.musicName }} - {{state.songInfo.singer}}</div>
+                <div>{{ state.currentTime }}/{{ state.audioTime }}</div>
+              </div>
+
+              <!-- 进度条的容器 -->
+              <div class="process-container">
+                <div class="process-bar" ref="track" id="audio-bar">
+                  <!-- 显示进度条 -->
+                  <div class="progress-box" :style="{ width: audioProgressPercent }">
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
 
-    </div>
-    <div class="play-icon-container">
-        <div class="play-icon-box">
-          <el-button @click="previousPiece" :icon="ArrowLeftBold"  circle></el-button>
-              <el-button  v-show="!state.playing" :icon="VideoPlay"  @click="playMusic" circle></el-button>
-              <el-button  v-show="state.playing" :icon="VideoPause"  @click="playMusic" circle></el-button>
-              <el-button :icon="ArrowRightBold" circle @click="nextMusic"></el-button>
+          <!-- 播放按钮的容器 -->
+          <div class="play-icon-container">
+              <div class="play-icon-box">
+                <!-- last music -->
+                <el-button @click="previousPiece" :icon="ArrowLeftBold"  circle />
+                <!-- 播放/暂停按钮，可切换 -->
+                <el-button  v-show="!state.playing" :icon="VideoPlay"  @click="playMusic" circle />
+                <el-button  v-show="state.playing" :icon="VideoPause"  @click="playMusic" circle />
+                <!-- next music -->
+                <el-button :icon="ArrowRightBold" circle @click="nextMusic" />
+              </div>
+            </div>
+            
+            <!-- 音量控制的容器 -->
+            <div class="action-container">
+              <!-- 音量滑块的容器 -->
+              <div class="volume">
+                <!-- 滑块组件 v-model双向绑定了state.volume，以实时调整音量 -->
+                <el-slider v-model="state.volume"></el-slider>
+              </div>
+            </div>
         </div>
-      </div>
-      <div class="action-container">
-        <div class="volume">
-          <el-slider v-model="state.volume"></el-slider>
-        </div>
-      </div>
-  </div>
-          <el-form-item>
-              <el-button @click="cancelClick('cancel')">Close</el-button>
-          </el-form-item>
-      </el-form>
-      
+
+        <!-- 关闭弹窗按钮 -->
+        <el-form-item>
+            <el-button @click="cancelClick('cancel')">Close</el-button>
+        </el-form-item>
+      </el-form> 
   </el-dialog>
 </template>
 
@@ -81,58 +100,90 @@ const state = reactive({
   playIndex: 0, // 当前播放哪一首
   //歌词行数
   lyricIndex: 0,
-  // 当前播放进度
+  //当前播放进度
   currentTime: 0,
-  progressL: 0, // 进度条总长度
+  //进度条总长度
+  progressL: 0,
+  //当前正在播放的歌曲信息的对象
   songInfo: {},
   lyricInfo: [],
+  //音频播放的当前时间以“mm：ss”格式显示的字符串
   audioTime: "00:00",
+  //音频播放音量的数字 max 100
   volume: 100,
-  playStatus: false, // 搜索或者历史播放完成后关闭播放状态按钮
+  //搜索或者历史播放完成后关闭播放状态按钮
+  playStatus: false, 
 });
-//通过message变量，获取父组件main.vue传来的数据，并传入dialog框中
 
+/**
+ * 监视 props.list,保证songList和props传递过来的对应值是一致
+ */
 watch(
+  //将 props.list 作为数据源传给 watch
   () => props.list,
+  //当 props.list 发生变化时，执行回调函数， props.list 的值赋值给newList
   (newList) => {
     state.songList = newList;
   },
 );
+/**
+ * 同理，监视playIndex的变化
+ */
 watch(
+  //将 props.playIndex 作为数据源传给 watch
   () => props.playIndex,
+  //当 props.playIndex 发生变化时，执行回调函数， props.playIndex 的值赋值给newIndex
   (newIndex) => {
     state.playIndex = newIndex;
   },
 );
 
+/**
+ * 在组件打开时执行。这个主要负责初始化进度条长度并调用 Init 函数进行初始化
+ */
 const opened = () => {
+  //将track的 offsetWidth赋值给 state.progressL，用于设置进度条的总长度
     state.progressL = track.value.offsetWidth;
-      // window.addEventListener("resize", function () {
-      //   // 变化后需要做的事
-      //   state.progressL = track.value.offsetHeight;
-      // });
-      console.log('state.playIndex1 = ', state.playIndex);
-      Init(); // 初始
+    console.log('state.playIndex1 = ', state.playIndex);
+    //初始
+    Init(); 
 }
 
+/**
+ * 调用 GetSongInfo 函数来获取当前播放歌曲的信息
+ */
 const Init = () => {
   GetSongInfo();
 };
+
+/**
+ * 获取歌曲列表中的数据
+ */
 const GetSongInfo = () => {
+  //初始化
   let myList = state.songList;
+  //获取当前播放歌曲的信息，并将其存储在state.songInfo
   state.songInfo = myList[state.playIndex];
+  //获取对应图片的url，并将其存储在state.coverImage
   state.backgroundUrl = state.songInfo.coverImage;
+  //音频初始化
   audioInit();
-  // GetLyric(state.songInfo.id);
 };
+
+/**
+ * 播放music时，对音频元素进行初始化
+ */
 const audioInit = () => {
+  //通过getElementById("audio")获取页面中的 audio 元素，打印 audio 元素的信息
   console.log(document.getElementById("audio"),audioRef.value);
-  // let progressL = track.value.offsetWidth; // 进度条总长
+  //添加canplay事件监听器
   audioRef.value.addEventListener("canplay", () => {
+    //将音频时长通过 TimeToString 函数转换成 "mm:ss" 格式。存储在audioTime
     state.audioTime = TimeToString(audioRef.value.duration);
   });
+  //添加timeupdate事件监听器，音频的播放位置发生变化时触发
   audioRef.value.addEventListener("timeupdate", () => {
-    // 当前播放时间
+    //重新获取当前播放时间
     let compareTime = audioRef.value.currentTime;
     for (let i = 0; i < state.lyricInfo.length; i++) {
       if (compareTime > parseInt(state.lyricInfo[i].time)) {
@@ -142,40 +193,68 @@ const audioInit = () => {
         }
       }
     }
+    //将音频的当前播放时间转换成 "mm:ss" 格式
     state.currentTime = TimeToString(audioRef.value.currentTime);
+    //计算音频的播放进度，将结果存储在 state.audioProgress 中
     state.audioProgress = audioRef.value.currentTime / audioRef.value.duration;
   });
+  //添加ended事件监听器，当音频播放结束时，触发此事件
   audioRef.value.addEventListener("ended", () => {
+    //调用musicPlay函数，获取列表中的index，播放下一首歌曲
     musicPlay(state.playIndex)
   });
 };
 
+/**
+ * 播放指定index的歌曲，根据index变量获取
+ */
 const musicPlay = (index) => {
+  //根据index从songList中获取对应的music信息
   state.songInfo = state.songList[index];
-    state.backgroundUrl = state.songInfo.coverImage;
-    // GetLyric(state.songInfo.id);
-    state.playStatus = false;
-    const _timer = setTimeout(() => {
-      audioRef.value.play();
-      clearTimeout(_timer)
-    }, 100);
+  //获取对应背景图的url
+  state.backgroundUrl = state.songInfo.coverImage;
+  //将playStatus设置为false，表示当前歌曲已准备好播放
+  state.playStatus = false;
+  //使用setTimeout函数来创建一个定时器，延迟0.1s后执行以下操作
+  //。使用 clearTimeout(_timer) 清除定时器，以避免重复执行定时器中的操作。
+  const _timer = setTimeout(() => {
+    //调用对应audio中对应值的play方法播放音频，并清除该计时器
+    audioRef.value.play();
+    clearTimeout(_timer)
+  }, 100);
 } 
 
+/**
+ * 播放上一首歌
+ */
 const previousPiece = () => {
+  //计算last music在歌曲列表中的索引
   let _index = state.playIndex - 1;
+  //检查index是否小于0，
   if(_index < 0)_index = state.songList.length - 1;
   console.log(_index);
+  //如果是，将_index设置为state.songList.length - 1，播放最后一首歌
   state.playIndex  = _index;
+  //传入index，播放上一首music
   musicPlay(state.playIndex)
 }
 
+/**
+ * 播放下一首歌
+ */
 const nextMusic = () => {
+  //获取下一首歌，当前index + 1得到
   let _index = state.playIndex + 1;
+  //检查index是否大于等于 songList.length，如果是，将index设置为 0，这样做是为了实现循环播放功能
   if(_index >= state.songList.length)_index = 0;
   state.playIndex  = _index;
+  //播放列表中的第一首歌曲
   musicPlay(state.playIndex)
 }
 
+/**
+ * 将秒数转换为以 "分:秒" 格式的字符串 
+ */
 const TimeToString = (seconds) => {
   let param = parseInt(seconds);
   let hh = "",
@@ -194,16 +273,17 @@ const TimeToString = (seconds) => {
   }
 };
 
+/**
+ * playing music
+ */
 const playMusic = () => {
   if (state.playing) {
     // 播放中,点击则为暂停
     state.playing = false;
-    // rotate.style.animationPlayState = "paused";
     audioRef.value.pause();
   } else {
     // 暂停中,点击则为播放
     state.playing = true;
-    // rotate.style.animationPlayState = "running";
     audioRef.value.play();
   }
 };
