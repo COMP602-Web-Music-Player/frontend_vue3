@@ -33,7 +33,7 @@
                 <template #default="scope">
                     <el-button type="primary" :icon="Edit" circle @click="editClick(scope.row)" />
                     <!--delete button scope.row.id传递局部对应的id值-->
-                    <el-popconfirm title="Are you sure to delete this information?" @confirm="deleteHandle(scope.row.id)">
+                    <el-popconfirm title="Are you sure to delete this music?" @confirm="deleteHandle(scope.row.id)">
                         <template #reference>
                             <el-button type="danger" :icon="Delete" circle ></el-button>
                         </template>
@@ -48,8 +48,8 @@
 import { Edit, Delete } from '@element-plus/icons-vue'
 //子组件，传入父组件Main.vue传入的数据，使用defineProps接收
 import { defineProps } from 'vue';
-//父组件传入的变量名 list
-const { list } = defineProps(['list'])
+//父组件传入的变量名 list editClick
+const { list, editClick, deleteHandle} = defineProps(['list', 'editClick', 'deleteHandle'])
 </script>
 
 <style lang="less" scoped>
