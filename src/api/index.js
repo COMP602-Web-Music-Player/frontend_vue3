@@ -19,4 +19,18 @@ export const getUser = (data) =>{
  */
 export const getMusic = (data) =>{
     return request({method: 'get', url: '/api/v1/admin/search', data})
+};
+
+/**
+ * 编辑music info的api
+ */
+export const updateMusic = (data) =>{
+    return request({method: 'get', url: '/api/v1/admin/uploadDetails', data})
+};
+
+/**
+ * delete user api
+ */
+export const deleteUser = (data) =>{
+    return request({method: 'get', url: '/api/v1/admin/delete', data})
 }

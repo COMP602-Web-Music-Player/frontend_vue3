@@ -165,7 +165,7 @@ watch(
  * watch changes in playIndex
  */
 watch(
-  //将 props.playIndex 作为数据源传给 watch
+  //将props.playIndex 作为数据源传给 watch
   //Pass props.playIndex as data source to watch
   () => props.playIndex,
   //当 props.playIndex 发生变化时，执行回调函数， props.playIndex 的值赋值给newIndex

@@ -11,7 +11,7 @@
 import { reactive, onMounted, ref } from 'vue';
 import Table from './Table.vue';
 import Edit from './Edit.vue';
-import { getMusic } from '../../api/index';
+import { getMusic, updateMusic } from '../../api/index';
 
 //创建一个数组。接收传递过来的数据
 const data = reactive({
@@ -35,6 +35,23 @@ onMounted(() => {
 /**
  * edit music info logic
  */
+//update music api
+const updateMusicData = async(query) =>{
+    //获取请求修改变量
+    const {musicName, categories, singer, id} = query;
+    //调用接口，传入需要修改的参数和对应id
+    const res = await updateMusic({musicName, categories, singer, id});
+    //假如后端获取对应message，打印message
+    if (res?.message) {
+        ElMessage({
+            message: res.message,
+            type: 'success'
+        })
+    }
+}
+
+
+
 //需要编辑的数据
 const musicInfo = reactive({
     message: {}
@@ -69,7 +86,7 @@ const confirmClick = (val) =>{
         //关闭弹窗
         isShowPop(false);
         //修改接口调用
-        
+        updateMusicData({musicName: val.musicName, categories: val.categories, singer: val.singer, id: val.id})
     }else{
         ElMessage({
         showClose: true,
