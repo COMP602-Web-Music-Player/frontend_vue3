@@ -9,7 +9,7 @@
 <script setup>
 import { reactive, onMounted } from 'vue';
 import Table from './Table.vue';
-import { getUser } from '../../api/index';
+import { getUser, deleteUser } from '../../api/index';
 //创建一个数组。接收传递过来的数据
 const data = reactive({
     list:[]
@@ -32,7 +32,19 @@ onMounted(() => {
 /**
  * user info删除
  */
- const deleteHandle = (val) =>{
+//delete user api
+const deleteUserData = async(query) =>{
+  const res = await deleteUser({id: query});
+  if (res.message) {
+    ElMessage({
+      message: res.message,
+      type: 'success'
+    })
+  }
+}
+
+
+const deleteHandle = (val) =>{
   //val: 获取table中 confirm事件deleteHandle中获取到的列表的row中的id值
   if (val) {
     data.list = data.list.filter((item) =>{
@@ -40,7 +52,7 @@ onMounted(() => {
       return item.id !== val
     })
     //删除接口的调用，传入val
-    
+    deleteUserData(val);
   }
 }
 </script>

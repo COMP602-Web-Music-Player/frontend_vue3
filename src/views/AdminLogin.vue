@@ -81,8 +81,6 @@ const getLoginData = async() =>{
   const res = await adminGetLogin({admin: adminInfo.admin, password: adminInfo.password})
   //如果登录成功
   if (res?.message) {
-    // localStorage.setItem('token', res.token)
-    //当接口中的token传入成功 login时打印message
     ElMessage({
         message: 'Login Success!',
         type: 'success',
