@@ -1,31 +1,47 @@
 <template>
-    <div>
-        home page
+    <Navbar/>
+    <div class="welcome-container">
+        <h1>Welcome to ListenIn</h1>
+        <p>Join ListenIn today to experience premium add-free music.</p>
+        <div class="btn" @click="goUserSignup">SignUp</div>
     </div>
-    <el-button type="primary" @click="goUserLogin">Click to User Login</el-button>
-    <el-button type="primary" @click="goAdminLogin">Click to Admin Login</el-button>
-    <el-button type="primary" @click="goPlayer">Click to Player</el-button>
-</template>
+    <div class="benefits-section">
+        <h1>Why join ListenIn?</h1>
+        <div class="card-container">
+
+            <div class="card">
+                <div class="cards">
+                    <img src="../img/add-free.png">
+                    <h2>Add-free music</h2>
+                </div>
+            </div>
+            <div class="card">
+                <div class="cards">
+                    <img src="../img/music.png">
+                    <h2>Free premium music</h2>
+                </div>
+            </div>
+            <div class="card">
+                <div class="cards">
+                    <img src="../img/play.png">
+                    <h2>play whenever whatever</h2>
+                </div>
+            </div>
+        </div>
+            
+        </div>
+        
+    </template>
 
 <script setup>
-import router from "../router/index"
+import router from "../router/index";
+import Navbar from "../components/homeComponents/Navbar";
+import "../styles/style.css";
 
-//click event go to user login page
-const goUserLogin = () =>{
-    router.push('/userLogin');
+
+const goUserSignup = () =>{
+    router.push('/usersignup');
 }
 
-//click event go to admin login page
-const goAdminLogin = () =>{
-    router.push('/adminLogin')
-}
-
-//click event go to player page
-const goPlayer = () =>{
-    router.push('/player')
-}
 </script>
 
-<style lang="less" scoped>
-
-</style>

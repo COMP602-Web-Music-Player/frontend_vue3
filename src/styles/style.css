@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@700&family=Montserrat&display=swap');
+*{
+    padding: 0;
+    box-sizing: border-box;
+    
+}
+
+:root{
+    --dm:'DM sans', sans-serif;
+    --montse:'montserrat', sans-serif;
+}
+
+.welcome-container {
+    height: 500px;
+    width:100%;
+    margin:0 auto;
+    padding-left: clamp(100px, 20%, 800px);
+    display: flex;
+    flex-direction: column;
+    background-color: #ff5c9a;
+    padding-top: 100px;
+  }
+
+  .welcome-container h1{
+    color:white;
+    font-family: var(--dm);
+    font-size:60px;
+  }
+
+  
+  .welcome-container p{
+    color:white;
+    padding-top:-30px;
+    font-size:30px;
+    font-family: var(--montse);
+  }
+
+.btn{
+    margin-top: 40px;
+    font-size: 20px;
+    transition: .2s;
+    width: 120px;
+    border-radius: 25px;
+    font-family: var(--montse);
+    padding:10px;
+    background-color: #171718;
+    color:white;
+    font-weight:bold;
+    text-align: center;
+  }
+  
+  .btn:hover{
+    cursor: pointer;
+    transform: scale(1.05);
+  }
+
+  .benefits-section {
+    height: 300px;
+    width: 100%;
+  }
+  
+  .benefits-section h1 {
+    font-weight: bold;
+    padding-left: 400px;
+    font-size: 60px;
+    font-family: var(--dm);
+  }
+  
+  .card-container{
+    display:flex;
+    padding:75px 15px;
+    margin:0 300px;
+  }
+
+
+  .card {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+    margin: 0 auto;
+    gap: 3rem;
+  }
+  
+  .cards {
+    padding-top: 50px;
+    display:flex;
+    flex-direction: column;
+    font-family: var(--montse);
+    align-items:center;
+  }
+  
+  img {
+    width:150px;
+  }
+  
+  .go-blue {
+    background-color: #327ef0;
+  }

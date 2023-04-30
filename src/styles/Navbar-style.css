@@ -1,0 +1,45 @@
+nav {
+  height: clamp(6vh, 8vh, 10vh);
+  width: 100%;
+  background-color: #171718;
+  position: absolute;
+}
+
+nav ul {
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  justify-content: flex-end;
+  align-content: center;
+  padding-right: 300px;
+}
+
+nav li {
+  font-weight: bold;
+}
+
+nav p {
+  color: white;
+  font-size: 16px;
+}
+
+nav p:hover {
+  color: #ff5c9a;
+}
+
+.text-white {
+  color: white;
+  padding-top: 15px;
+  font-size: 16px;
+}
+
+.stay-left {
+  position: relative;
+  right: 10px;
+  padding-left: min(20px);
+  padding-top: 25px;
+  font-weight: bold;
+}
+
+
