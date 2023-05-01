@@ -40,7 +40,7 @@
                 <!--home button-->
                 <el-button class="createMusic_submit" @click="goAdminPage">Cancel</el-button>
                 <!--createMusic button-->
-                <el-button type="primary" class="createMusic_submit" @click="createMusic">createMusic</el-button>
+                <el-button type="primary" class="createMusic_submit" @click="submitMusic">Create Music</el-button>
             </el-form>
         </div>
     </div>
@@ -49,7 +49,7 @@
 <script setup>
 import router from '../router/index';
 import { reactive, ref } from "vue";
-// import {  } from '../api/index';
+import { uploadMusic } from '../api/index';
 /**
  * 初始的ref
  */
@@ -71,39 +71,39 @@ const createMusic = reactive({
  */
 const rules = {
 musicName:[{required: 'true', trigger: 'blur', message: 'Please input Music Name'}],
-categories:[{required: 'true', trigger: 'blur', message: 'Please input Phone Number'}],
-singer:[{required: 'true', trigger: 'blur', message: 'Please input the User Name'}],
+categories:[{required: 'true', trigger: 'blur', message: 'Please input Category'}],
+singer:[{required: 'true', trigger: 'blur', message: 'Please input the Singer'}],
 }
 
 /**
  * 注册方法
  */
-//  const createMusic = () =>{
-//   ref_form.value.validate((val) =>{
-//     if (val) {
-//       getcreateMusicData()
-//     }
-//   })
-// }
+const submitMusic = () =>{
+  ref_form.value.validate((val) =>{
+    if (val) {
+      getCreateMusicData()
+    }
+  })
+}
 
 /**
- * member info 注册接口的调用
+ * upload music api的调用
  */
-// //注册的接口调用
-// const getcreateMusicData = async() =>{
-//   //注册接口
-//   const res = await getcreateMusic({musicName: createMusic.musicName, coverImage: createMusic.coverImage, categories: createMusic.categories, singer: createMusic.singer})
+//注册的接口调用
+const getCreateMusicData = async() =>{
+  //注册接口
+  const res = await uploadMusic({musicName: createMusic.musicName, coverImage: createMusic.coverImage, categories: createMusic.categories, singer: createMusic.singer})
   
-//   //当接口中的token传入成功 注册时打印message
-//   if (res?.message) {
-//     ElMessage({
-//     message: 'createMusic Success!',
-//     type: 'success',
-//   })
-//   //需要传入router index.js中的path: '/adminPage'
-//   router.push('/adminPage');
-//   }
-// }
+  //当接口中的token传入成功 注册时打印message
+  if (res?.message) {
+    ElMessage({
+    message: 'Create Music Success!',
+    type: 'success',
+  })
+  //需要传入router index.js中的path: '/adminPage'
+  router.push('/adminPage');
+  }
+}
 
 //click to adminPage button
 const goAdminPage = () =>{

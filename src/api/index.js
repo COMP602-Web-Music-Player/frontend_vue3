@@ -25,7 +25,7 @@ export const getMusic = (data) =>{
  * 编辑music info的api
  */
 export const updateMusic = (data) =>{
-    return request({method: 'get', url: '/api/v1/admin/uploadDetails', data})
+    return request({method: 'get', url: '/api/v1/admin/updateDetails', data})
 };
 
 /**
@@ -34,3 +34,10 @@ export const updateMusic = (data) =>{
 export const deleteUser = (data) =>{
     return request({method: 'get', url: '/api/v1/admin/delete', data})
 }
+
+/**
+ * music upload api
+ */
+export const uploadMusic = (data) =>{
+    return request({method: 'post', url: '/api/v1/admin/upload', data})
+};
