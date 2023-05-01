@@ -1,8 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@700&family=Montserrat&display=swap');
+
+:root{
+  --dm:'DM sans', sans-serif;
+  --montse:'montserrat', sans-serif;
+}
+
 nav {
   height: clamp(6vh, 8vh, 10vh);
   width: 100%;
   background-color: #171718;
   position: absolute;
+  font-family: var(--montse);
+  cursor: pointer;
 }
 
 nav ul {

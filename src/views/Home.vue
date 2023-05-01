@@ -3,7 +3,7 @@
     <div class="welcome-container">
         <h1>Welcome to ListenIn</h1>
         <p>Join ListenIn today to experience premium add-free music.</p>
-        <div class="btn" @click="goUserSignup">SignUp</div>
+        <div class="btn" @click="goUserSignup">Sign up</div>
     </div>
     <div class="benefits-section">
         <h1>Why join ListenIn?</h1>
