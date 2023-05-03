@@ -11,7 +11,7 @@
 import { reactive, onMounted, ref } from 'vue';
 import Table from './Table.vue';
 import Edit from './Edit.vue';
-import { getMusic, updateMusic } from '../../api/index';
+import { getMusic, updateMusic, removeMusic } from '../../api/index';
 
 //创建一个数组。接收传递过来的数据
 const data = reactive({
@@ -99,6 +99,15 @@ const confirmClick = (val) =>{
 /**
  * music info删除
  */
+const deleteMusic = async(query) =>{
+    const res = await removeMusic({id: query});
+    if (res.message) {
+        ElMessage({
+            message: res.message,
+            type: 'success'
+        })
+    }
+}
 const deleteHandle = (val) =>{
   //val: 获取table中 confirm事件deleteHandle中获取到的列表的row中的id值
   if (val) {
@@ -107,7 +116,7 @@ const deleteHandle = (val) =>{
       return item.id !== val
     })
     //删除接口的调用，传入val
-    
+    deleteMusic(val);
   }
 }
 </script>

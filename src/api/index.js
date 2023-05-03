@@ -55,3 +55,10 @@ export const userLogin = (data) =>{
 export const userRegister = (data) =>{
     return request({method: 'post', url: '/api/v1/user/userRegister', data})
 };
+
+/**
+ * delete user api
+ */
+export const removeMusic = (data) =>{
+    return request({method: 'get', url: '/api/v1/admin/remove', data})
+}
