@@ -41,3 +41,17 @@ export const deleteUser = (data) =>{
 export const uploadMusic = (data) =>{
     return request({method: 'post', url: '/api/v1/admin/upload', data})
 };
+
+/**
+ * user login api
+ */
+export const userLogin = (data) =>{
+    return request({method: 'post', url: '/api/v1/user/userLogin', data})
+};
+
+/**
+ * user register api
+ */
+export const userRegister = (data) =>{
+    return request({method: 'post', url: '/api/v1/user/userRegister', data})
+};

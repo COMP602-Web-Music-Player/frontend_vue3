@@ -34,14 +34,7 @@
     </template>
 
 <script setup>
-import router from "../router/index";
 import Navbar from "../components/homeComponents/Navbar";
 import "../styles/style.css";
-
-
-const goUserSignup = () =>{
-    router.push('/usersignup');
-}
-
 </script>
 

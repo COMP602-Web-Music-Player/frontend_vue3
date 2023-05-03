@@ -4,7 +4,7 @@
             <li @click="goAdminLogin"><p>Admin Log in</p></li>
             <li @click="goPlayer"><p>Music Player</p></li>
             <li class="text-white">|</li>
-            <li @click=""><p>Sign up</p></li>
+            <li @click="goUserSignup"><p>Sign up</p></li>
             <li @click="goUserLogin"><p>Log in</p></li>
         </ul>
     </nav>
@@ -28,6 +28,11 @@ const goAdminLogin = () =>{
 //click event go to player page
 const goPlayer = () =>{
     router.push('/player')
+}
+
+//click event go to register page
+const goUserSignup = () =>{
+    router.push('/userRegister');
 }
 </script>
 
