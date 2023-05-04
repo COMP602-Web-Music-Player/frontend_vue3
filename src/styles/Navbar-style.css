@@ -22,7 +22,8 @@ nav ul {
   gap: 2rem;
   justify-content: flex-end;
   align-content: center;
-  padding-right: 300px;
+  position: absolute;
+  right: 300px;
 }
 
 nav li {
