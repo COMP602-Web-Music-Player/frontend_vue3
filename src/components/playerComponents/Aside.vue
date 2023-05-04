@@ -1,10 +1,10 @@
 <template>
     <el-menu class="el-menu-vertical-demo" active-text-color="#FFFFFF" background-color="#FF5C9A" text-color="#000000" unique-opened="true">
         <!--set up icon and title-->
-        <!-- <div class="icon">
-            <img src="../../assets/ICON.png">
+        <div class="icon">
+            <img src="../../img/logo1.png">
             <span>Music Control System</span>
-        </div> -->
+        </div>
 
         <!--tab menu 1-->
         <el-sub-menu index="1">
