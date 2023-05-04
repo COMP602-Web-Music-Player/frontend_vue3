@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@700&family=Montserrat&display=swap');
+
+:root{
+    --dm:'DM sans', sans-serif;
+    --montse:'montserrat', sans-serif;
+}
+
+@-webkit-keyframes fadenum{
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 100;
+  }
+}
+
+  .login{
+      height: 100%;
+      background-position: 50% 50%;
+      background-color: rgb(255, 253, 253);
+    }
+
+  
+    .el_icon{
+      height: 30px !important;
+    }
+  
+
+    .login_container{
+      animation: fadenum 1s ease;
+      position: absolute;
+      z-index: 1;
+      width: 400px;
+      top:50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      transition: all 1s;
+      min-height: 200px;
+      text-align: center;
+      background-color: #fcfcfc;
+      border-radius: 10px;
+      padding: 20px;
+    }
+
+    .login h1{
+      font-size: 30px;
+      transition: all 1s;
+      font-weight: bold;
+      font-family: 'DM sans', sans-serif;
+      color: rgb(0, 0, 0);
+      margin-bottom: 36px;
+    }
+
+    .text-change{
+      font-family: var(--montse);
+      font-weight: bold;
+    }
+
+    ::placeholder{
+        font-family: var(--montse);
+    }
+
+    .login_submit{
+        width: 25%;
+        position: absolute;
+        right: 20px;
+        height: 50px;
+        color: rgb(0, 0, 0);
+        justify-content: center;
+        align-items: center;
+        font-family: var(--montse);
+        font-weight: bold;
+        font-size:inherit;
+        display: flex;
+        letter-spacing: 0.5px;
+        border-radius: 60px;
+        transition: .2s;
+        background-color: #ff59ca;
+    }
+
+    .login_submit:hover{
+        cursor: pointer;
+        transform:scale(1.05);
+    }
+
+      .el_card .el-input-group_prepend{
+        padding: 0 10px;
+      }
+    
+  .top-line{
+    border-top:2px solid rgb(173, 169, 169);
+    border-radius: 5px;
+    position: relative;
+    top:90px;
+  }
+
+  .no-account-btn{
+    position: relative;
+    top: 110px;
+    border-radius: 500px;
+    border: 1px solid rgb(173, 169, 169);
+    background-color: transparent;
+    text-align: center;
+    align-items: center;
+    text-decoration: none;
+    font-weight: bold;
+    font-family: var(--montse);
+    font-size: 1rem;
+    justify-content:center;
+    width:400px;
+    padding-block: 7px;
+    padding-inline: 31px;
+  }
+
+  .no-account-btn:hover{
+    border: 1px solid black;
+
+  }
+
+  .sub-heading{
+    position: relative;
+    top: 100px;
+    left:3px;
+    font-size: 20px;
+    font-family: var(--dm);
+  }

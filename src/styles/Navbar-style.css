@@ -12,7 +12,7 @@ nav {
   background-color: #171718;
   position: absolute;
   font-family: var(--montse);
-  cursor: pointer;
+  
 }
 
 nav ul {
@@ -22,7 +22,8 @@ nav ul {
   gap: 2rem;
   justify-content: flex-end;
   align-content: center;
-  padding-right: 300px;
+  position: absolute;
+  right: 300px;
 }
 
 nav li {
@@ -32,6 +33,7 @@ nav li {
 nav p {
   color: white;
   font-size: 16px;
+  cursor: pointer;
 }
 
 nav p:hover {

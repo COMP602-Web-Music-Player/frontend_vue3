@@ -37,7 +37,7 @@ const router = createRouter({
         {
             path: '/musicInfo',
             component: ()=> import('../views/MusicInfo.vue')
-        }
+        },
     ]
 })
 
