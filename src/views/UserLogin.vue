@@ -1,7 +1,6 @@
 <template>
     <!-- login模块 -->
     <div class="login">
-      <div class="backGroundImage"></div>
       <div class="login_container">
         <h1 class="h1">User Login</h1>
         <!--keyup.enter click 回车 绑定事件login-->
@@ -29,14 +28,18 @@
 
           <!--click button 进入player主页面-->
           <!--绑定事件 跳转至player页面-->
-          <el-button type="primary" class="login_submit" @click="login">Login</el-button>
+          <button class="login_submit" @click="adminLogin">LOG IN</button>
         </el-form>
+        <div class="top-line"></div>
+        <h2 class="sub-heading">Don't have an Account?</h2>
+        <button class="no-account-btn">Sign up for ListenIn</button>
       </div>
     </div>
 </template>
 
 <script setup>
 import router from '../router/index';
+import "../styles/adminlogin-style.css";
 import { reactive, ref } from 'vue';
 import { userLogin } from '../api/index';
 /**
@@ -96,73 +99,3 @@ const getLoginData = async() =>{
 }
 </script>
 
-<style lang="less" scoped>
-@-webkit-keyframes fadenum{
-  0% {
-    opacity: 0;
-  }
-
-  100% {
-    opacity: 100;
-  }
-}
-//class login样式
-  .login {
-    height: 100%;
-    .backGroundImage{
-      height: 100%;
-      // background-image: url("");
-      background-repeat: no-repeat;
-      background-size: 100%;
-      background-position: 50% 50%;
-      background-color: darkgray;
-    }
-
-    //icon样式
-    .el_icon{
-      height: 30px !important;
-    }
-  
-    //登录框样式
-    .login_container{
-      animation: fadenum 1s ease;
-      position: absolute;
-      z-index: 1;
-      width: 400px;
-      top:50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      transition: all 1s;
-      min-height: 200px;
-      text-align: center;
-      background-color: whitesmoke;
-      border-radius: 10px;
-      padding: 20px;
-    }
-
-    //登录框中h1样式
-    h1{
-      font-size: 20px;
-      transition: all 1s;
-      font-weight: bold;
-      font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-      margin-bottom: 36px;
-    }
-
-    .el_form{
-      border-radius: 20px;
-    }
-
-    .el_card{
-      .login_submit{
-        width: 100%;
-        height: 50px;
-        border-radius: 20px;
-      }
-
-      :deep(.el-input-group_prepend){
-        padding: 0 10px;
-      }
-    }
-  }
-</style>

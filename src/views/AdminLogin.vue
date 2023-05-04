@@ -30,6 +30,9 @@
           <!--绑定事件 跳转至admin home页面-->
           <button class="login_submit" @click="adminLogin">LOG IN</button>
         </el-form>
+        <div class="top-line"></div>
+        <h2 class="sub-heading">Don't have an Account?</h2>
+        <button class="no-account-btn">Sign up for ListenIn</button>
       </div>
     </div>
 </template>
