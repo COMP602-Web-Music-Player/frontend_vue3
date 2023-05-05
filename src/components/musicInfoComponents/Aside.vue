@@ -2,7 +2,7 @@
     <el-menu class="el-menu-vertical-demo" active-text-color="#FFFFFF" background-color="#FF5C9A" text-color="#000000" unique-opened="true">
         <!--set up icon and title-->
         <div class="icon">
-            <img src="">
+            <img src="../../img/logo1.png">
             <span>Music Control System</span>
         </div>
 
