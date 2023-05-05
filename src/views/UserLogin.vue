@@ -28,7 +28,7 @@
 
           <!--click button 进入player主页面-->
           <!--绑定事件 跳转至player页面-->
-          <button class="login_submit" @click="adminLogin">LOG IN</button>
+          <button class="login_submit" @click="userLogin">LOG IN</button>
         </el-form>
         <div class="top-line"></div>
         <h2 class="sub-heading">Don't have an Account?</h2>
