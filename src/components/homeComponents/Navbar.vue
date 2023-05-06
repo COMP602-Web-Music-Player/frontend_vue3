@@ -1,5 +1,6 @@
 <template>
     <nav>
+        <img class="logo-nav" src="../../img/logo2.png" @click="home">
         <ul>
             <li @click="goAdminLogin"><p>Admin Log in</p></li>
             <li class="text-white">|</li>

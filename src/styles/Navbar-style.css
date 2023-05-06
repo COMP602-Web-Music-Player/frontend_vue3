@@ -23,6 +23,7 @@ nav ul {
   justify-content: flex-end;
   align-content: center;
   position: absolute;
+  top:0px;
   right: 300px;
 }
 
@@ -54,4 +55,11 @@ nav p:hover {
   font-weight: bold;
 }
 
+.logo-nav{
+  width: 120px;
+  position: absolute;
+  height: 75px;
+  left:60px; 
+  cursor: pointer;
+}
 
