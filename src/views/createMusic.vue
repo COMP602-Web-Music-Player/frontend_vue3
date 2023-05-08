@@ -101,13 +101,13 @@ const getCreateMusicData = async() =>{
     type: 'success',
   })
   //需要传入router index.js中的path: '/adminPage'
-  router.push('/adminPage');
+  router.push('/musicInfo');
   }
 }
 
 //click to adminPage button
 const goAdminPage = () =>{
-    router.push('/adminPage');
+    router.push('/musicInfo');
 }
 </script>
 
