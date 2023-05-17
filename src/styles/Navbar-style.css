@@ -58,8 +58,9 @@ nav p:hover {
 .logo-nav{
   width: 120px;
   position: absolute;
+  object-fit: cover;
   height: 75px;
-  left:60px; 
+  left:350px; 
   cursor: pointer;
 }
 
