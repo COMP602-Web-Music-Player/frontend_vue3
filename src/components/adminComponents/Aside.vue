@@ -13,17 +13,12 @@
                 <span>Music</span>
             </template>
             <el-menu-item index="1-1" @click="goMusicDetails">Music Details</el-menu-item>
-            <el-menu-item index="1-2" @click="goCreateMusic">Upload Music</el-menu-item>
         </el-sub-menu>
     </el-menu>
 </template>
 
 <script setup>
 import router from '../../router/index';
-
-const goCreateMusic = () =>{
-    router.push('/createMusic');
-}
 
 const goMusicDetails = () =>{
     router.push('musicInfo');

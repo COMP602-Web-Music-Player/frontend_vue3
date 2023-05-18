@@ -88,6 +88,7 @@ const getLoginData = async() =>{
         message: 'Login Success!',
         type: 'success',
       });
+      console.log(res);
       //需要传入router index.js中的path: '/player'
       router.push('/player');
   }else{

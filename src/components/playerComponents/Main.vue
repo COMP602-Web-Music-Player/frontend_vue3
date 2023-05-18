@@ -31,7 +31,9 @@ const getMusicData = async(query) =>{
     const res = await getMusic({id});
     //将根据id而query到的数据存入res，然后存入data.list中
     //Store the data queried by id in res and then in data.list
+    
     data.list = res?.data.list;
+    console.log(data.list);
 }
 //显示数据
 //display data
