@@ -4,6 +4,7 @@
         <div class="homeIcon">
             
         </div>
+        <SearchBar />
         <div class="homeIcon">
             <span>Web Music Player</span>
         </div>
@@ -16,11 +17,15 @@
 </template>
 
 <script setup>
+
 import router from '../../router/index';
+import "../../styles/player.css";
+import SearchBar from './SearchBar.vue';
 
 const goAdmin = () =>{
     router.push('/home');
 }
+
 </script>
 
 <style lang="less" scoped>
@@ -55,6 +60,8 @@ const goAdmin = () =>{
     .homeIcon{
         display: flex;
         align-items: center;
+        position: relative;
+        right:300px;
 
         span{
             margin-left: 10px;

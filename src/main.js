@@ -6,6 +6,7 @@ import router from './router/index';
 
 const app = createApp(App);
 for (let iconName in elementIcons) {
+
   app.component(iconName, elementIcons[iconName]);
 }
 
