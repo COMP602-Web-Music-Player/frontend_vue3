@@ -1,11 +1,12 @@
 <template>
    <div class="search-bar">
-    <font-awesome-icon icon="fa-solid faMagnifyingGlass" />
+    <font-awesome-icon icon="fa-solid fa-magnifying-glass" />
             <input type="text" v-model="query">
         </div>
 </template>
 
 <script setup>
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import axios from "axios";
 import "../../styles/player.css";
 
