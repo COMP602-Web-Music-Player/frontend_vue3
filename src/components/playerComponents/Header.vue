@@ -4,6 +4,11 @@
         <div class="homeIcon">
             
         </div>
+        <div class="search-bar">
+            <input type="text" v-model="query">
+            <SearchBar />
+
+        </div>
         <div class="homeIcon">
             <span>Web Music Player</span>
         </div>
@@ -16,11 +21,16 @@
 </template>
 
 <script setup>
+import axios from 'axios';
 import router from '../../router/index';
+import "../../styles/player.css";
+
+import SearchBar from './SearchBar.vue';
 
 const goAdmin = () =>{
     router.push('/home');
 }
+
 </script>
 
 <style lang="less" scoped>
