@@ -60,6 +60,8 @@ const goAdmin = () =>{
     .homeIcon{
         display: flex;
         align-items: center;
+        position: relative;
+        right:300px;
 
         span{
             margin-left: 10px;
