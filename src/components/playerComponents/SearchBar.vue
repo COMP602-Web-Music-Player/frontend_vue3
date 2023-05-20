@@ -1,18 +1,17 @@
 <template>
    <div class="search-bar">
-    <font-awesome-icon icon="fa-solid fa-magnifying-glass" />
             <input type="text" v-model="query">
+            <el-icon class="search-icon"><Search /></el-icon>
         </div>
 </template>
 
 <script setup>
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import axios from "axios";
 import "../../styles/player.css";
 
 
 const SearchBar ={
-  name: 'SerachBar',
+  name: 'SearchBar',
   data() {
     return{
       query: '',

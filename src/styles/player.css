@@ -1,11 +1,16 @@
 
+:root{
+    --dm:'DM sans', sans-serif;
+    --montse:'montserrat', sans-serif;
+  }
 
 .search-bar{
-    /* background-color:black; */
+    background-color: #eb6f9f;
     border-radius: 60px;
-    width: 200px;
+    width: 250px;
     height: 50px;
     display: flex;
+    
 }
 
 .search-bar input{
@@ -16,4 +21,14 @@
     border-radius: 60px;
     font-size: 20px;
     color: white;
+    font-family: var(--montse);
+}
+
+.search-icon{
+    font-size: 30px;
+    font-weight: bold;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #161515;
 }
