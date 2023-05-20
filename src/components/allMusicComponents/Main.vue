@@ -12,14 +12,12 @@ import Table from './Table.vue';
 import Player from './Player.vue';
 //import api getMusic
 import { getMusic } from '../../api/index';
-import emitter from '../../utils/eventBus';
 
 //创建一个数组。接收传递过来的数据, 音乐的index number
 //Create an array. Receive the data passed in, the index number of the music
 const data = reactive({
     list:[],
     playIndex: 0,
-    sideCategories: 'English'
 })
 
 /**
@@ -30,24 +28,16 @@ const data = reactive({
  */
 const getMusicData = async(query) =>{
     const id = query?.id;
-    const categories = query?.categories || data.sideCategories;
-    const res = await getMusic({id, categories});
+    const res = await getMusic({id});
     //将根据id而query到的数据存入res，然后存入data.list中
     //Store the data queried by id in res and then in data.list
     
-    data.list = res?.data.list.filter((item) => (item.categories === categories));
+    data.list = res?.data.list;
 }
 //显示数据
 //display data
 onMounted(() => {
     getMusicData();
-    /**
-     * listen categories change
-     */
-    emitter.on('categories', (val) =>{
-        data.sideCategories = val;
-        getMusicData({categories: val});
-    })
 })
 
 /**

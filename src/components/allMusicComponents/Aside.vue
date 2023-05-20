@@ -6,42 +6,22 @@
             <span>Music Control System</span>
         </div>
 
+        <!--tab menu 1-->
         <el-sub-menu index="1">
             <template #title>
                 <el-icon><Headset /></el-icon>
-                <span>All Music List</span>
+                <span>Switch</span>
             </template>
-            <el-menu-item index="1-1" @click="goAllMusic">All Music</el-menu-item>
-        </el-sub-menu>
-        <!--tab menu 1-->
-        <el-sub-menu index="2">
-            <template #title>
-                <el-icon><Headset /></el-icon>
-                <span>Play List</span>
-            </template>
-            <el-menu-item index="2-1" @click="categoriesHandle('English')">English</el-menu-item>
-
-            <el-menu-item index="2-2" @click="categoriesHandle('Chinese')">Chinese</el-menu-item>
-
-            <el-menu-item index="2-3" @click="categoriesHandle('Korean')">Korean</el-menu-item>
-
-            <el-menu-item index="2-4" @click="categoriesHandle('Japanese')">Japanese</el-menu-item>
+            <el-menu-item index="1-1" @click="goCategories">Category</el-menu-item>
         </el-sub-menu>
     </el-menu>
 </template>
 
 <script setup>
 import router from '../../router/index';
-import emitter from '../../utils/eventBus';
-/**
- * click to change the sub menu tab
- */
-const categoriesHandle = (type) =>{
-    emitter.emit('categories', type)
-}
 
-const goAllMusic = () =>{
-    router.push('/allMusic')
+const goCategories = () =>{
+    router.push('/player')
 }
 </script>
 

@@ -42,6 +42,10 @@ const router = createRouter({
             path: '/register',
             component: ()=> import('../views/Register.vue')
         },
+        {
+            path: '/allMusic',
+            component: ()=> import('../views/AllMusic.vue')
+        },
     ]
 })
 
