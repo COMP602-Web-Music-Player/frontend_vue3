@@ -1,4 +1,9 @@
-<template></template>
+<template>
+   <div class="search-bar">
+    <font-awesome-icon icon="fa-solid faMagnifyingGlass" />
+            <input type="text" v-model="query">
+        </div>
+</template>
 
 <script setup>
 import axios from "axios";
