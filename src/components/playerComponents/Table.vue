@@ -24,6 +24,7 @@
                 <template #default="scope">
                     <el-button :icon="VideoPlay" circle @click="playerClick(scope.row, scope.$index)"/>
                     <el-button :icon="Download" circle @click="downloadMusic(scope.row)"/>
+                    <el-button :icon="VideoCameraFilled" circle />
                 </template>
             </el-table-column>
         </el-table>
@@ -31,7 +32,7 @@
 </template>
 
 <script setup>
-import { VideoPlay, Download } from '@element-plus/icons-vue'
+import { VideoPlay, Download, VideoCameraFilled } from '@element-plus/icons-vue'
 import { ElMessage } from 'element-plus';
 //子组件，传入父组件Main.vue传入的数据，使用defineProps接收
 import { defineProps,reactive, watch } from 'vue';

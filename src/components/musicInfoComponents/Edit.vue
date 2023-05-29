@@ -13,6 +13,10 @@
             <el-input v-model="editData.singer" placeholder="Singer" />
           </el-form-item>
 
+          <el-form-item label="MV URL" prop="mv" required >
+            <el-input v-model="editData.mv" placeholder="MV" />
+          </el-form-item>
+
           <el-form-item>
             <el-button @click="confirmClick('cancel')">Cancel</el-button>
             <el-button type="primary" @click="submitForm(ruleFormRef)">Confirm</el-button>
@@ -32,7 +36,8 @@ const editData = reactive({
     id: message.id,
     musicName: message.musicName,
     categories: message.categories,
-    singer: message.singer
+    singer: message.singer,
+    mv: message.mv
 })
 
 /**
@@ -44,7 +49,7 @@ const submitForm = async(fromEl) =>{
     if (!fromEl) return;
     await fromEl.validate((valid, fields) =>{
         if (valid) {
-            confirmClick({musicName: editData.musicName, categories: editData.categories, singer: editData.singer, id: editData.id})
+            confirmClick({musicName: editData.musicName, categories: editData.categories, singer: editData.singer, mv: editData.mv, id: editData.id})
         }else{
             console.log('Error Submit', fields);
         }

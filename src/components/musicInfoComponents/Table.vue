@@ -25,6 +25,10 @@
 
             </el-table-column>
 
+            <el-table-column prop="mv" label="MV URL">
+
+            </el-table-column>
+
             <el-table-column prop="url" label="url">
 
             </el-table-column>

@@ -36,6 +36,14 @@
                         </template>
                     </el-input>
                 </el-form-item>
+
+                <el-form-item prop="mv">
+                    <el-input v-model="createMusic.mv" placeholder="MV URL" clearable>
+                        <template #prepend>
+                          <el-icon><Film /></el-icon>
+                        </template>
+                    </el-input>
+                </el-form-item>
                 
                 <!-- upload music file  -->
                 <el-upload
@@ -82,6 +90,7 @@ const createMusic = reactive({
     coverImage:'',
     categories:'',
     singer:'',
+    mv: '',
     file: null
 })
 
@@ -130,6 +139,7 @@ const getCreateMusicData = async() =>{
   formData.append('coverImage', createMusic.coverImage);
   formData.append('categories', createMusic.categories);
   formData.append('singer', createMusic.singer);
+  formData.append('mv', createMusic.mv);
   formData.append('file', createMusic.file);
   
   //处理可能的错误

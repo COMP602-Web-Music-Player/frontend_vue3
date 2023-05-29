@@ -38,9 +38,9 @@ onMounted(() => {
 //update music api
 const updateMusicData = async(query) =>{
     //获取请求修改变量
-    const {musicName, categories, singer, id} = query;
+    const {musicName, categories, singer, id, mv} = query;
     //调用接口，传入需要修改的参数和对应id
-    const res = await updateMusic({musicName, categories, singer, id});
+    const res = await updateMusic({musicName, categories, singer, id, mv});
     //假如后端获取对应message，打印message
     if (res?.message) {
         ElMessage({
@@ -73,20 +73,21 @@ const editClick = (val) =>{
 const confirmClick = (val) =>{
     if (val === 'cancel') {
         isShowPop(false);
-    }else if (val.musicName !== musicInfo.message.musicName || val.categories !== musicInfo.message.categories || val.singer !== musicInfo.message.singer) {
+    }else if (val.musicName !== musicInfo.message.musicName || val.categories !== musicInfo.message.categories || val.singer !== musicInfo.message.singer || val.mv !== musicInfo.message.mv) {
         //如果以上信息发生更改，将item的id和接收edit组件中的id进行比对，如果相同，则对data.list中的信息进行重新赋值
         data.list.map((item) =>{
             if (item.id === val.id) {
                 item.musicName = val.musicName;
                 item.categories = val.categories;
                 item.singer = val.singer;
+                item.mv = val.mv;
             }
         })
 
         //关闭弹窗
         isShowPop(false);
         //修改接口调用
-        updateMusicData({musicName: val.musicName, categories: val.categories, singer: val.singer, id: val.id})
+        updateMusicData({musicName: val.musicName, categories: val.categories, singer: val.singer, mv: val.mv, id: val.id})
     }else{
         ElMessage({
         showClose: true,

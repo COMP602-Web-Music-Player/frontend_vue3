@@ -9,7 +9,7 @@ const host = ENV === 'development'?'http://127.0.0.1:3000':''
 const service = axios.create({
     baseURL: host,
     //请求时间超过3s 报错
-    timeout: '3000',
+    timeout: '10000',
 })
 
 /**
@@ -31,20 +31,14 @@ service.interceptors.request.use((config) => {
 service.interceptors.response.use((res) => {
     const {code, data, message} = res
 
-   if (res.data.code === 0) {
-       return res.data
-   }
-   //编辑member info时 触发该message的原因在于 后端代码中会触发joi错误中间件  可以尝试将所有joi检查文件和对应代码删去
-   // else {
-   //     ElMessage({
-   //         message: 'Success',
-   //         type: 'error'
-   //     });
-   // }
-
-   if (message === 'Authorization failed') {
-       router.push('/login')
-   }
+    if (res.data.code === 0) {
+        return res.data
+    }else {
+        ElMessage({
+            message: res.data.message,
+            type: 'warning'
+        });
+    }
 });
 
 /**
