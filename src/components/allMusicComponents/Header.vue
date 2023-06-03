@@ -4,6 +4,7 @@
         <div class="homeIcon">
             
         </div>
+        <SearchBar />
         <div class="homeIcon">
             <span>Web Music Player</span>
         </div>
@@ -16,6 +17,8 @@
 </template>
 
 <script setup>
+import "../../styles/player.css";
+import SearchBar from '../../components/playerComponents/SearchBar.vue';
 import router from '../../router/index';
 
 const goAdmin = () =>{

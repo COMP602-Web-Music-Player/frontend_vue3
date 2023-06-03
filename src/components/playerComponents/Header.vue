@@ -17,10 +17,10 @@
 </template>
 
 <script setup>
-
 import router from '../../router/index';
 import "../../styles/player.css";
 import SearchBar from './SearchBar.vue';
+
 
 const goAdmin = () =>{
     router.push('/home');
