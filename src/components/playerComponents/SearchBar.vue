@@ -1,39 +1,33 @@
 <template>
   <div class="search-bar">
-    <input type="text" v-model="query" />
-    <el-icon class="search-icon"><Search /></el-icon>
+    <input type="text" v-model="query" @input="search"/>
+    <el-icon class="search-icon"><SearchBar /></el-icon>
     <ul>
-      <li v-for="results in SearchBar" :key="results.id">
-        {{ results.data }}
+      <li v-for="result in results" :key="result.id">
+        {{ result.data }}
       </li>
     </ul>
   </div>
 </template>
 
 <script setup>
-import axios from "axios";
+
 import "../../styles/player.css";
 
 const SearchBar = {
   name: "SearchBar",
-  data() {
-    return {
+  data(){
+    return{
       query: "",
       results: [],
+      data: []
     };
   },
   methods: {
     search() {
-      axios
-        .get("/api/v1/admin/search")
-        .then((response) => {
-          this.results = response.data.filter((item) => {
-            return item.name.toLowerCase().includes(this.querytoLowerCase());
-          });
-        })
-        .catch((error) => {
-          console.error(error);
-        });
+      this.results = this.data.filter((item) =>{
+        return item.name.toLowerCase().includes(this.query.toLowerCase());
+      });
     },
   },
 };

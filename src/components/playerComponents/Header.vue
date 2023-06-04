@@ -26,6 +26,9 @@ const goAdmin = () =>{
     router.push('/home');
 }
 
+
+
+
 </script>
 
 <style lang="less" scoped>

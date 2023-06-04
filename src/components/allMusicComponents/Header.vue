@@ -24,6 +24,9 @@ import router from '../../router/index';
 const goAdmin = () =>{
     router.push('/home');
 }
+
+
+
 </script>
 
 <style lang="less" scoped>
