@@ -51,8 +51,8 @@ watch(
 );
 
 const mvConnect = (row) => {
-    const urlPattern = /^(ftp|http|https):\/\/[^ "]+$/;
-    const isValidUrl = urlPattern.test(row.mv);
+    const urlPatt = /^(ftp|http|https):\/\/[^ "]+$/;
+    const isValidUrl = urlPatt.test(row.mv);
 
     if (isValidUrl) {
         window.open(row.mv, '_blank');
