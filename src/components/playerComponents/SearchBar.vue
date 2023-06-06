@@ -41,11 +41,11 @@ const data = reactive({
 })
 
 const query = ref("");
-const musicList = computed(() => {
-  return data.list?.filter((item) =>{
-    return item.musicName.toLowerCase().indexOf(query.value.toLowerCase()) >=0;
-  })
-})
+// const musicList = computed(() => {
+//   return data.list?.filter((item) =>{
+//     return item.musicName.toLowerCase().indexOf(query.value.toLowerCase()) >=0;
+//   })
+// })
 
 onMounted(async () => {
   try {
