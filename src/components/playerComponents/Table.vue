@@ -69,7 +69,6 @@ const mvConnect = (row) => {
 };
 
 
-//download music function, 接收一个名为row的参数.
 const downloadMusic = (row) => {
     //使用html中的a标签来完成下载连接
     const link = document.createElement("a");

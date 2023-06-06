@@ -1,13 +1,17 @@
 <template>
     <div class="main">
-        <!-- <div>search</div> -->
-        <Table :list="data.list" :playerClick="playerClick" />
+        <el-form>
+            <el-form-item>
+                    <el-input v-model="inputValue"></el-input>
+            </el-form-item>
+       </el-form>
+        <Table :list="musicList" :playerClick="playerClick" />
     </div>
     <Player :popShow="popShow" :list="data.list"  :play-index="data.playIndex" :cancelClick="cancelClick"/>
 </template>
 
 <script setup>
-import { reactive, onMounted, ref } from 'vue';
+import { reactive, onMounted, ref, computed} from 'vue';
 import Table from './Table.vue';
 import Player from './Player.vue';
 //import api getMusic
@@ -18,6 +22,13 @@ import { getMusic } from '../../api/index';
 const data = reactive({
     list:[],
     playIndex: 0,
+})
+
+const inputValue = ref('');
+const musicList = computed(() =>{
+    return data.list?.filter((item) =>{
+        return item.musicName.toLowerCase().indexOf(inputValue.value.toLowerCase()) >= 0;
+    })
 })
 
 /**
