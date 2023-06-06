@@ -24,7 +24,7 @@
                 <template #default="scope">
                     <el-button :icon="VideoPlay" circle @click="playerClick(scope.row, scope.$index)"/>
                     <el-button :icon="Download" circle @click="downloadMusic(scope.row)"/>
-                    <el-button :icon="VideoCameraFilled" circle />
+                    <el-button :icon="VideoCameraFilled" circle @click="mvConnect(scope.row)" />
                 </template>
             </el-table-column>
         </el-table>
@@ -48,6 +48,26 @@ watch(
     musicList.list = newList;
   },
 );
+
+const mvConnect = (row) => {
+    const urlPattern = /^(ftp|http|https):\/\/[^ "]+$/;
+    const isValidUrl = urlPattern.test(row.mv);
+
+    if (isValidUrl) {
+        window.open(row.mv, '_blank');
+
+        ElMessage({
+            message: 'Redirected to the link',
+            type: 'success'
+        });
+    } else {
+        ElMessage({
+            message: 'Invalid URL',
+            type: 'error'
+        });
+    }
+};
+
 
 //download music function, 接收一个名为row的参数.
 const downloadMusic = (row) => {
