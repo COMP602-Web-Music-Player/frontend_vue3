@@ -1,67 +1,40 @@
 <template>
-  <div class="main">
-    <el-form>
-      <el-form-item>
-        <el-input v-model="query" placeholder="Search Music" />
-      </el-form-item>
-    </el-form>
-  </div>
-  <Player :popShow="popShow" :list="data.List" :play-index="data.playIndex" :cancelClick="cancelClick"/>
-  <ul>
-    <li v-for="item in musicList" :key="item.id">
-      {{ item.musicName }}
-    </li>
-  </ul>
-  
-  <!-- <div class="search-bar">
-    <input type="text" v-model="query" @input="search"/> 
-    
-    <Player :popShow="popShow" :list="data.list" :play-index="data.playIndex" :cancelClick="cancelClick"></Player>
-
+  <div class="search-bar">
+    <input type="text" v-model="query" />
+    <el-icon class="search-icon"><Search /></el-icon>
     <ul>
-      <li v-for="item in musicList" :key="item.id">
-        {{ item.musicName }}
+      <li v-for="result in searchResults" :key="result.id">
+        {{ result.name }}
       </li>
     </ul>
-  </div> -->
-
+  </div>
 </template>
 
 <script setup>
-import Table from './Table.vue';
-import Player from './Player.vue';
-import {getMusic} from '../../api/index';
-import {reactive, ref, computed} from 'vue';
+import axios from "axios";
 import "../../styles/player.css";
 
-const data = reactive({
-  list:[],
-  playIndex:0,
-  sideCategories: 'English'
-})
-
-const query = ref("");
-const musicList = computed(() => {
-  return data.list?.filter((item) =>{
-    return item.musicName.toLowerCase().indexOf(inputValue.vlaue.toLowerCase()) >=0;
-  })
-})
-
-// const SearchBar = {
-//   name: "SearchBar",
-//   data(){
-//     return{
-//       query: "",
-//       results: [],
-//       data: []
-//     };
-//   },
-//   methods: {
-//     search() {
-//       this.results = this.data.filter((item) =>{
-//         return item.name.toLowerCase().includes(this.query.toLowerCase());
-//       });
-//     },
-//   },
-// };
+const SearchBar = {
+  name: "SearchBar",
+  data() {
+    return {
+      query: "",
+      results: [],
+    };
+  },
+  methods: {
+    search() {
+      axios
+        .get("/api/data")
+        .then((response) => {
+          this.results = response.data.filter((item) => {
+            return item.name.toLowerCase().includes(this.querytoLowerCase());
+          });
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    },
+  },
+};
 </script>

@@ -38,6 +38,7 @@
 </template>
 
 <script setup>
+import { useStore } from 'vuex'; // 引入 useStore 钩子
 import router from '../router/index';
 import "../styles/adminlogin-style.css";
 import { reactive, ref } from 'vue';
@@ -46,6 +47,12 @@ import { userLogin } from '../api/index';
  * 初始的ref
  */
 const ref_form = ref(null);
+const store = useStore();
+
+// 初始化一个loggedInUser对象
+// const loggedInUser = reactive({
+//   id:''
+// })
 
 /**
  * login表单的数据声明
@@ -79,23 +86,25 @@ const goLogin = () =>{
  * user login接口的调用
  */
 //登录的接口调用
-const getLoginData = async() =>{
+const getLoginData = async() => {
   //login api 封装调用
-  const res = await userLogin({username: userInfo.username, password: userInfo.password})
+  const res = await userLogin({username: userInfo.username, password: userInfo.password});
   //如果登录成功
   if (res?.message) {
+    // 存储用户信息到 Vuex
+    store.dispatch('setLoggedInUser', { username: userInfo.username });
     ElMessage({
         message: 'Login Success!',
         type: 'success',
-      });
-      console.log(res);
-      //需要传入router index.js中的path: '/player'
-      router.push('/player');
+    });
+    console.log(res);
+    //需要传入router index.js中的path: '/player'
+    router.push('/player');
   }else{
     ElMessage({
         message: 'Login Failed!',
         type: 'warning',
-      });
+    });
   }     
 }
 
@@ -103,4 +112,5 @@ const goRegister = () =>{
   router.push('/register');
 }
 </script>
+
 
