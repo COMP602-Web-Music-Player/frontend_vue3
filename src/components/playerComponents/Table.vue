@@ -50,6 +50,7 @@ watch(
   },
 );
 
+//go to music video function,it goes through the SQL table and gets the url.
 const mvConnect = (row) => {
     const urlPattern = /^(ftp|http|https):\/\/[^ "]+$/;
     const isValidUrl = urlPattern.test(row.mv);
