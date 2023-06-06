@@ -31,7 +31,7 @@
           <button class="login_submit" @click="register">Register</button>
         </el-form>
         <div class="top-line"></div>
-        <h2 class="sub-heading">Fill the form to regist</h2>
+        <h2 class="sub-heading">Fill the form to Register</h2>
       </div>
     </div>
 </template>
@@ -40,7 +40,7 @@
 import router from '../router/index';
 import "../styles/adminlogin-style.css";
 import { reactive, ref } from 'vue';
-import {userRegister } from '../api/index';
+import { userRegister } from '../api/index';
 /**
  * 初始的ref
  */

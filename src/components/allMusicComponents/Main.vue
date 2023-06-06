@@ -1,7 +1,7 @@
 <template>
     <div class="main">
         <!-- <div>search</div> -->
-        <Table :list="memberList" :playerClick="playerClick" />
+        <Table :list="data.list" :playerClick="playerClick" />
     </div>
     <Player :popShow="popShow" :list="data.list"  :play-index="data.playIndex" :cancelClick="cancelClick"/>
 </template>
@@ -12,7 +12,6 @@ import Table from './Table.vue';
 import Player from './Player.vue';
 //import api getMusic
 import { getMusic } from '../../api/index';
-import { ElMessage } from 'element-plus';
 
 //创建一个数组。接收传递过来的数据, 音乐的index number
 //Create an array. Receive the data passed in, the index number of the music
@@ -40,26 +39,6 @@ const getMusicData = async(query) =>{
 onMounted(() => {
     getMusicData();
 })
-
-
-const inputValue = ref('');
-
-const memberList = computed(() => {
-    return data.list?.filter((item) => {
-        return item.musicName.toLowerCase().indexOf(inputValue.value.toLowerCase()) >=0;
-    })
-})
-
-const mvConnect = (row) => {
-    //使用html中的a标签来完成下载连接
-    window.open(row.url, '_blank');
-
-    ElMessage({
-        message: 'Redirected to the link',
-        type: 'success'
-    });
-};
-
 
 /**
  * 控制播放器的逻辑

@@ -44,7 +44,6 @@ const musicList = reactive({
 watch(
   () => props.list,
   (newList) => {
-    console.log('????');
     musicList.list = newList;
   },
 );

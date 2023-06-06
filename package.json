@@ -17,7 +17,8 @@
     "mitt": "^3.0.0",
     "vue": "^3.2.13",
     "vue-music-component": "^1.1.7",
-    "vue-router": "^4.0.14"
+    "vue-router": "^4.0.14",
+    "vuex": "^4.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.16",

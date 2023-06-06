@@ -61,4 +61,11 @@ export const userRegister = (data) =>{
  */
 export const removeMusic = (data) =>{
     return request({method: 'get', url: '/api/v1/admin/remove', data})
-}
+};
+
+/**
+ * get user info api
+ */
+export const getUserInfo = (data) =>{
+    return request({method: 'get', url: '/api/v1/admin/getAvatar', data})
+};

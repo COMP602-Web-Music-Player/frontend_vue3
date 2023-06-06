@@ -7,7 +7,7 @@
 .search-bar{
     background-color: #eb6f9f;
     border-radius: 60px;
-    width: 400px;
+    width: 250px;
     height: 50px;
     display: flex;
     
@@ -15,21 +15,20 @@
 
 .search-bar input{
     background-color: #eb6f9f;
-    width: 395px;
+    width: 195px;
     position: relative;
     left: 5px;
     border-radius: 60px;
     font-size: 20px;
     color: white;
     font-family: var(--montse);
-    padding: 0 5px;
 }
 
 .search-icon{
     font-size: 30px;
     font-weight: bold;
-    left: 30px;
+    left: 10px;
     top: 50%;
     transform: translateY(-50%);
-    color: #ffffff;
+    color: #161515;
 }
