@@ -87,12 +87,7 @@ const getLoginData = async() =>{
       });
       //需要传入router index.js中的path: '/home'
       router.push('/adminPage');
-  }else{
-    ElMessage({
-        message: 'Login Failed!',
-        type: 'warning',
-      });
-  }     
+  }    
 }
 </script>
 

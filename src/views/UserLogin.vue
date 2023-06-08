@@ -100,12 +100,7 @@ const getLoginData = async() => {
     console.log(res);
     //需要传入router index.js中的path: '/player'
     router.push('/player');
-  }else{
-    ElMessage({
-        message: 'Login Failed!',
-        type: 'warning',
-    });
-  }     
+  }    
 }
 
 const goRegister = () =>{

@@ -4,7 +4,6 @@
         <div class="homeIcon">
         
         </div>
-        <SearchBar />
         <div class="homeIcon">
             <span>Web Music Player</span>
         </div>

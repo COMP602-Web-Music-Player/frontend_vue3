@@ -3,7 +3,7 @@
         <!--set up icon and title-->
         <div class="icon">
             <img src="../../img/logo1.png">
-            <span>Music Control System</span>
+            <span>ListenIn</span>
         </div>
 
         <!--tab menu 1-->

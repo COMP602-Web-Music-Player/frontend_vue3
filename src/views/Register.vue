@@ -52,7 +52,7 @@
             @change="onFileChange"
           >
             <template #trigger>
-              <el-button type="primary">select file</el-button>
+              <el-button type="primary">Select a Photo</el-button>
             </template>
 
             <template #tip>
